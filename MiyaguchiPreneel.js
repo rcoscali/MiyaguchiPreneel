@@ -11,9 +11,7 @@
     /*jslint indent: 2, bitwise: false, nomen: false, plusplus: false, white: false, regexp: false */
     /*global document, window, escape, unescape, module, require, Uint32Array */
     
-    var AesCmac = require('node-aes-cmac').aesCmac;
     var aesjs = require('aes-js');
-    var BufferXor = require('node-aes-cmac/lib/buffer-tools.js').xor;
     var options = {returnAsBuffer: true};
     
 
@@ -94,8 +92,10 @@
 	var nblk = Math.floor((data_length + this.getBlkSz() -1) / this.getBlkSz());
 	if (iv instanceof Buffer)
 	    out_cur = Buffer.from(iv)
-	else
+	else if (typeof iv === 'string')
 	    out_cur = Buffer.from(iv, 'hex');
+        else
+            out_cur = Buffer.from('00000000000000000000000000000000', 'hex');
 	for (var i = 0; i < nblk; i++)
 	{
 	    var out_pre = Buffer.from(out_cur);
