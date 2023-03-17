@@ -100,7 +100,7 @@
 	{
 	    var out_pre = Buffer.from(out_cur);
 	    var dblk = msg.subarray(i*this.getBlkSz(),
-				    (i+1)*this.getBlkSz() > data_length ? data_length : (i+1)*this.getBlkSz());
+				    (i+1)*this.getBlkSz() > data_length ? data_length : (i+1)*this.getBlkSz()).swap16();
 	    var x_cur;
 	    if (dblk.length < this.getBlkSz())
 		x_cur = this.pad_func(dblk, this.getBlkSz());
