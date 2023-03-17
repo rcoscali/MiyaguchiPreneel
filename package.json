@@ -1,6 +1,6 @@
 {
     "name": "miyaguchipreneel",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "JavaScript implementation for MiyaguchiPreneel compression function",
     "main": "MiyaguchiPreneel.js",
     "scripts": {
