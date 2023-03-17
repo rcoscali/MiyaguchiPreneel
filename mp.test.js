@@ -26,21 +26,21 @@
     test('MiyaguchiPreneel instanciation: enc_func method', () =>
 	{
 	    var mp = new MP();
-	    var bufferKey = Buffer.from('0153f7000099ed9f320451aa8a7d9707', 'hex');
+	    var bufferKey = Buffer.from('53f7000099ed9f320001008004de5f1e', 'hex');
 	    var bufferMsg = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    expect(mp.enc_func).toBeInstanceOf(Function);
-	    expect(mp.enc_func(bufferKey, bufferKey).toString('hex')).toBe('1ec368c31c67701405647d5c8a0069dd');
-	    expect(mp.enc_func(bufferMsg, bufferKey).toString('hex')).toBe('0addec254a74bb2287327aaace1427f6');
+	    expect(mp.enc_func(bufferKey, bufferKey).toString('hex')).toBe('a918f5eded3ce5cbde2e47596a2f9f62');
+	    expect(mp.enc_func(bufferMsg, bufferKey).toString('hex')).toBe('04bcb5fdb682ebf64fd89a467299460d');
 	}
     );
 
     test('MiyaguchiPreneel instanciation: custom enc_func method', () =>
 	{
 	    var mp = new MP((k, v) => {return(v);});
-	    var bufferKey = Buffer.from('0153f7000099ed9f320451aa8a7d9707', 'hex');
+	    var bufferKey = Buffer.from('53f7000099ed9f320001008004de5f1e', 'hex');
 	    var bufferMsg = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    expect(mp.enc_func).toBeInstanceOf(Function);
-	    expect(mp.enc_func(bufferKey, bufferKey).toString('hex')).toBe('0153f7000099ed9f320451aa8a7d9707');
+	    expect(mp.enc_func(bufferKey, bufferKey).toString('hex')).toBe('53f7000099ed9f320001008004de5f1e');
 	    expect(mp.enc_func(bufferKey, bufferMsg).toString('hex')).toBe('3cc30001008004de5f1eacc0403d0000');
 	}
     );
@@ -48,10 +48,10 @@
     test('MiyaguchiPreneel instanciation: key_func method', () =>
 	{
 	    var mp = new MP();
-	    var bufferKey = Buffer.from('0153f7000099ed9f320451aa8a7d9707', 'hex');
+	    var bufferKey = Buffer.from('53f7000099ed9f320001008004de5f1e', 'hex');
 	    var bufferMsg = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    expect(mp.key_func).toBeInstanceOf(Function);
-	    expect(mp.key_func(bufferKey).toString('hex')).toBe('0153f7000099ed9f320451aa8a7d9707');
+	    expect(mp.key_func(bufferKey).toString('hex')).toBe('53f7000099ed9f320001008004de5f1e');
 	    expect(mp.key_func(bufferMsg).toString('hex')).toBe('3cc30001008004de5f1eacc0403d0000');
 	}
     );
@@ -68,10 +68,10 @@
 		    return(newk);
 		}
 	    );
-	    var bufferKey = Buffer.from('0153f7000099ed9f320451aa8a7d9707', 'hex');
+	    var bufferKey = Buffer.from('53f7000099ed9f320001008004de5f1e', 'hex');
 	    var bufferMsg = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    expect(mp.key_func).toBeInstanceOf(Function);
-	    expect(mp.key_func(bufferKey).toString('hex')).toBe('07977d8aaa5104329fed990000f75301');
+	    expect(mp.key_func(bufferKey).toString('hex')).toBe('1e5fde0480000100329fed990000f753');
 	    expect(mp.key_func(bufferMsg).toString('hex')).toBe('00003d40c0ac1e5fde0480000100c33c');
 	}
     );
@@ -79,12 +79,12 @@
     test('MiyaguchiPreneel instanciation: pad_func method', () =>
 	{
 	    var mp = new MP();
-	    var bufferPad = Buffer.from('0153f7000099ed9f320451aa8a7d', 'hex');
+	    var bufferPad = Buffer.from('015f7000099ed92051aa8a7d', 'hex');
 	    var bufferMsg = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    expect(mp.pad_func).toBeInstanceOf(Function);
 	    expect(mp.pad_func(Buffer.from('123'), 5).toString('hex')).toBe('3132330000');
 	    expect(mp.pad_func(Buffer.from('abcd', 'hex'), 5).toString('hex')).toBe('abcd000000');
-	    expect(mp.pad_func(bufferPad, 16).toString('hex')).toBe('0153f7000099ed9f320451aa8a7d0000');
+	    expect(mp.pad_func(bufferPad, 16).toString('hex')).toBe('015f7000099ed92051aa8a7d00000000');
 	    expect(mp.pad_func(bufferMsg, 32).toString('hex')).toBe('3cc30001008004de5f1eacc0403d000000000000000000000000000000000000');
 	}
     );
