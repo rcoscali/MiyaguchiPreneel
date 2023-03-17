@@ -9,7 +9,6 @@
     var aesjs = require('aes-js');
 
     const MP = require('./MiyaguchiPreneel.js');
-    const BufferXor = require('node-aes-cmac/lib/buffer-tools.js').xor;
 
     var options = {returnAsBuffer: true};
 
@@ -170,9 +169,11 @@
 	}
     );
 
-    test('MiyaguchiPreneel instanciation: comp_step method', () =>
+    test('MiyaguchiPreneel instanciation: comp method', () =>
 	{
 	    var mp = new MP();
+            var bufferMsgA = Buffer.from("Message to get hash on with AES!");
+            var bufferMsgB = Buffer.from("Message to get hash on with AES-ECB!");
 	    var bufferMsg0 = Buffer.from('00000000000000000000000000000000','hex');
 	    var bufferMsg1 = Buffer.from('3cc30001008004de5f1eacc0403d0000','hex');
 	    var bufferMsg2 = Buffer.from('00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000','hex');
@@ -181,13 +182,14 @@
 	    var bufferIv1 = Buffer.from('0153f7000099ed9f320451aa8a7dffff','hex');
 	    expect(mp.comp).toBeInstanceOf(Function);
 	    expect(mp.comp(bufferIv0, bufferMsg0).toString('hex')).toBe('66e94bd4ef8a2c3b884cfa59ca342b2e');
-	    expect(mp.comp(bufferIv0, bufferMsg1).toString('hex')).toBe('7e438a1ac7dbac47fa1add7186fcbbe3');
+	    expect(mp.comp(bufferIv0, bufferMsg1).toString('hex')).toBe('01e4c0b40b53db89efc2c3bfe383a576');
 	    expect(mp.comp(bufferIv0, bufferMsg2).toString('hex')).toBe('9638cbac04a474ea4ac9602cb15a1955');
-	    expect(mp.comp(bufferIv0, bufferMsg3).toString('hex')).toBe('bdbb40593258d7f1b2a9d65e63e3c0d1');
+	    expect(mp.comp(bufferIv0, bufferMsg3).toString('hex')).toBe('2580ca41ab6d15df9940c2c71a82d541');
 	    expect(mp.comp(bufferIv1, bufferMsg0).toString('hex')).toBe('3354b8bd25f8d4c2ba35fecb54c71480');
 	    expect(mp.comp(bufferIv1, bufferMsg1).toString('hex')).toBe('852c33b900b8f43b28ad2be35b093624');
 	    expect(mp.comp(bufferIv1, bufferMsg2).toString('hex')).toBe('e7ce5a48177d0098b5ac73d8a2b50248');
-	    expect(mp.comp(bufferIv1, bufferMsg3).toString('hex')).toBe('eb4b4c7468e98578889f787f72fda4c3');
+	    expect(mp.comp(bufferIv0, bufferMsgA).toString('hex')).toBe('0d14a4bc3e7021c7616409b2393668ff');
+	    expect(mp.comp(bufferIv0, bufferMsgB).toString('hex')).toBe('11b484254a81fb845c7bda23bd0bf321');
 	}
     );
 })(this);
