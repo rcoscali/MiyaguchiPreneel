@@ -1,3 +1,14 @@
 # MiyaguchiPreneel
+JS Implementation for MiyaguchiPreneel compression function
 
-Pure JavaScript implementation for MiyaguchiPreneel compression function
+## Install
+
+```
+npm i miyaguchipreneel
+```
+
+## Usage
+
+```
+
+```
