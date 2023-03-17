@@ -69,3 +69,30 @@ I'll let you, as an exercise, write instanciation for using PKCS#1 v1.5 padding 
 ```
 
 I'll describe the rest of the API in further doc changes.
+
+# Test
+
+You can launch tests by using jest command:
+
+``` bash
+rcoscali@Ubuntu-22:~/Documents/MiyaguchiPreneel$ jest
+ PASS  ./mp.test.js
+  ✓ MiyaguchiPreneel instanciation: properties (3 ms)
+  ✓ MiyaguchiPreneel instanciation: enc_func method (2 ms)
+  ✓ MiyaguchiPreneel instanciation: custom enc_func method
+  ✓ MiyaguchiPreneel instanciation: key_func method
+  ✓ MiyaguchiPreneel instanciation: custom key_func method (1 ms)
+  ✓ MiyaguchiPreneel instanciation: pad_func method (2 ms)
+  ✓ MiyaguchiPreneel instanciation: custom pad_func method (1 ms)
+  ✓ MiyaguchiPreneel instanciation: bxor method (3 ms)
+  ✓ MiyaguchiPreneel instanciation: comp_step method (1 ms)
+  ✓ MiyaguchiPreneel instanciation: comp method (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        0.521 s, estimated 1 s
+Ran all test suites.
+rcoscali@Ubuntu-22:~/Documents/MiyaguchiPreneel$ 
+
+```
